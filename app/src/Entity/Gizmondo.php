@@ -24,6 +24,9 @@ class Gizmondo
     #[ORM\Column(length: 100)]
     private ?string $dev = null;
 
+    #[ORM\ManyToOne(inversedBy: 'publisher_name')]
+    private ?Editeur $publisher = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class Gizmondo
     public function setDev(string $dev): static
     {
         $this->dev = $dev;
+
+        return $this;
+    }
+
+    public function getPublisher(): ?Editeur
+    {
+        return $this->publisher;
+    }
+
+    public function setPublisher(?Editeur $publisher): static
+    {
+        $this->publisher = $publisher;
 
         return $this;
     }
